@@ -31,6 +31,7 @@
    sudo pip install landslide
 
 #. 生成slide:
+
 .. code-block:: bash
 
    landslide --theme tango file.rst
