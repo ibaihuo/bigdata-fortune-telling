@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>大数据算命系列(4)</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" media="print" href="file:///usr/lib64/python2.7/site-packages/landslide/themes/default/css/print.css">
+    <link rel="stylesheet" media="screen, projection" href="file:///usr/lib64/python2.7/site-packages/landslide/themes/tango/css/screen.css">
+    
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="file:///usr/lib64/python2.7/site-packages/landslide/themes/default/js/slides.js"></script>
+    
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div id="blank"></div>
+  <div class="presentation">
+    <div id="current_presenter_notes">
+      <div id="presenter_note"></div>
+    </div>
+    <div class="slides">
+      
+      <!-- slide source: bigdata_log_mining.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>大数据算命系列(4)</h1></header>
+            
+            
+            <section><h2>大数据日志挖掘技术</h2>
+<blockquote>
+<p>----- 大数据算命师</p>
+<p>----- 2013.08.22</p>
+</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="bigdata_log_mining.rst">bigdata_log_mining.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              1/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: bigdata_log_mining.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>挖掘工具与脚本</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>Shell</li>
+<li>awk语言</li>
+<li>python<ol class="arabic">
+<li>numpy</li>
+<li>scipy</li>
+<li>pandas</li>
+<li>matplotlib</li>
+</ol>
+</li>
+<li>R语言</li>
+<li>大数据框架</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="bigdata_log_mining.rst">bigdata_log_mining.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              2/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: bigdata_log_mining.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>大数据框架DSE</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>hadoop<ol class="arabic">
+<li>CFS:(Cassandra File System)</li>
+<li>Map-Reduce</li>
+</ol>
+</li>
+<li>hive<ol class="arabic">
+<li>Hive-QL，调用Map-Reduce</li>
+<li>支持加载外部脚本</li>
+<li>支持结果导出</li>
+</ol>
+</li>
+<li>ElasticSearch<ol class="arabic">
+<li>集群化</li>
+<li>RESETful，与编程语言无关</li>
+</ol>
+</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="bigdata_log_mining.rst">bigdata_log_mining.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: bigdata_log_mining.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>日志挖掘技术</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>基于统计的分析<ol class="arabic">
+<li>统计才出特征（基于特征的匹配）</li>
+<li>统计才出趋势（最多的）</li>
+<li>统计才出异常</li>
+</ol>
+</li>
+<li>关联分析<ol class="arabic">
+<li>同一攻击者，攻击多个网站</li>
+<li>不同IP的攻击者，具有非常相似的客户端特征(UA/Proxy-ip/Referer/Language)</li>
+<li>自相矛盾</li>
+</ol>
+</li>
+<li>人工分析<ol class="arabic">
+<li>社会工程学</li>
+<li>黑客档案</li>
+<li>安全性事件追踪</li>
+</ol>
+</li>
+<li>0day的挖掘</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="bigdata_log_mining.rst">bigdata_log_mining.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: bigdata_log_mining.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>0day的挖掘</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>去掉已知特征的攻击<ol class="arabic">
+<li>未知特征的攻击叫0day</li>
+<li>去除批量工具、扫描器等等的非人类的攻击</li>
+<li>寻找离群点(异常点)</li>
+</ol>
+</li>
+<li>基于白规则<ol class="arabic">
+<li>基于历史的学习</li>
+<li>针对特定的应用</li>
+<li>基于概率</li>
+</ol>
+</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="bigdata_log_mining.rst">bigdata_log_mining.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              5/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: bigdata_log_mining.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>基于数据挖掘算法</h1></header>
+            
+            
+            <section><ol class="arabic">
+<li><p class="first">数据挖掘算法</p>
+<p>1.分类/聚类/关联/预测/离群点</p>
+</li>
+</ol>
+<ol class="arabic simple">
+<li>朴素贝叶斯算法<ol class="arabic">
+<li>基于概率</li>
+<li>基于历史（已经）发生的概率</li>
+</ol>
+</li>
+<li>K-means<ol class="arabic">
+<li>相似度（距离）</li>
+<li>找出同类，揪出异类</li>
+</ol>
+</li>
+<li>KNN</li>
+<li>Decision Tree</li>
+<li>Aprior</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="bigdata_log_mining.rst">bigdata_log_mining.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              6/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: bigdata_log_mining.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>自动化与探索性挖掘</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>自动化<ol class="arabic">
+<li>成熟的思想</li>
+<li>成熟的实现</li>
+<li>无需人工干预</li>
+<li>要求稳定性</li>
+</ol>
+</li>
+<li>探索性挖掘<ol class="arabic">
+<li>已知的想法，待验证</li>
+<li>需要人工干预</li>
+<li>要求人的经验</li>
+<li>要求机器的速度</li>
+</ol>
+</li>
+<li>所有的自动化全部是探索性转化而来的</li>
+<li>所有的探索性挖掘对自动化都是有意义的</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="bigdata_log_mining.rst">bigdata_log_mining.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: bigdata_log_mining.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>数据挖掘哲学</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>统计：以铜为镜，可以正衣冠；以史为鉴，可以知兴衰。</li>
+<li>分类：佛是过来人，人是未来佛。</li>
+<li>聚类：物以类聚，人以群分。</li>
+<li>关联：事物不是孤立的，一定与其它有联系。</li>
+<li>预测：世间万物，皆有规律可循。</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="bigdata_log_mining.rst">bigdata_log_mining.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: bigdata_log_mining.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>日志挖掘流程</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>采集/传输</li>
+<li>汇总/处理/存储</li>
+<li>探索式分析</li>
+<li>自动化</li>
+<li>建立相应库</li>
+<li>展示(UI/分析报告)</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="bigdata_log_mining.rst">bigdata_log_mining.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: bigdata_log_mining.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>攻击趋势统计</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>各种攻击类型的趋势</li>
+<li>被攻击网站<ol class="arabic">
+<li>网站内容类型</li>
+<li>web service类型</li>
+<li>地域</li>
+</ol>
+</li>
+<li>攻击来源<ol class="arabic">
+<li>国家/地区</li>
+<li>攻击时间段(根据黑客常活跃的时间段，反推黑客的时区)</li>
+<li>攻击工具</li>
+<li>攻击特征</li>
+<li>代理节点</li>
+<li>僵尸网络</li>
+</ol>
+</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="bigdata_log_mining.rst">bigdata_log_mining.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              10/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: bigdata_log_mining.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>大数据的优势</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>为实时分析提供保障</li>
+<li>实时与离线相互补充</li>
+<li>放大了低信息量的数据所能提供的信息</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="bigdata_log_mining.rst">bigdata_log_mining.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              11/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: bigdata_log_mining.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Thank you!</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="bigdata_log_mining.rst">bigdata_log_mining.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              12/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="toc" class="sidebar hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+      
+      <tr id="toc-row-1">
+        <th><a href="#slide1">大数据算命系列(4)</a></th>
+        <td><a href="#slide1">1</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-2">
+        <th><a href="#slide2">挖掘工具与脚本</a></th>
+        <td><a href="#slide2">2</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-3">
+        <th><a href="#slide3">大数据框架DSE</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-4">
+        <th><a href="#slide4">日志挖掘技术</a></th>
+        <td><a href="#slide4">4</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-5">
+        <th><a href="#slide5">0day的挖掘</a></th>
+        <td><a href="#slide5">5</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-6">
+        <th><a href="#slide6">基于数据挖掘算法</a></th>
+        <td><a href="#slide6">6</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide7">自动化与探索性挖掘</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-8">
+        <th><a href="#slide8">数据挖掘哲学</a></th>
+        <td><a href="#slide8">8</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-9">
+        <th><a href="#slide9">日志挖掘流程</a></th>
+        <td><a href="#slide9">9</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-10">
+        <th><a href="#slide10">攻击趋势统计</a></th>
+        <td><a href="#slide10">10</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-11">
+        <th><a href="#slide11">大数据的优势</a></th>
+        <td><a href="#slide11">11</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-12">
+        <th><a href="#slide12">Thank you!</a></th>
+        <td><a href="#slide12">12</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <div id="help" class="sidebar hidden">
+    <h2>Help</h2>
+    <table>
+      <caption>Help</caption>
+      <tr>
+        <th>Table of Contents</th>
+        <td>t</td>
+      </tr>
+      <tr>
+        <th>Exposé</th>
+        <td>ESC</td>
+      </tr>
+      <tr>
+        <th>Full screen slides</th>
+        <td>e</td>
+      </tr>
+      <tr>
+        <th>Presenter View</th>
+        <td>p</td>
+      </tr>
+      <tr>
+        <th>Source Files</th>
+        <td>s</td>
+      </tr>
+      <tr>
+        <th>Slide Numbers</th>
+        <td>n</td>
+      </tr>
+      <tr>
+        <th>Toggle screen blanking</th>
+        <td>b</td>
+      </tr>
+      <tr>
+        <th>Show/hide slide context</th>
+        <td>c</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th>Help</th>
+        <td>h</td>
+      </tr>
+    </table>
+  </div>
+  <script>main()</script>
+</body>
+</html>
