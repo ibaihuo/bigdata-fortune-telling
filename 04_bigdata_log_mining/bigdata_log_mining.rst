@@ -33,7 +33,7 @@
 1. hadoop
 
    1. CFS:(Cassandra File System)
-   2. Map-Reduce
+   2. Map-Reduce (Streaming接口)
 #. hive
 
    1. Hive-QL，调用Map-Reduce
