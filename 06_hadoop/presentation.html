@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>大数据算命系列(6)</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" media="print" href="file:///usr/lib64/python2.7/site-packages/landslide/themes/default/css/print.css">
+    <link rel="stylesheet" media="screen, projection" href="file:///usr/lib64/python2.7/site-packages/landslide/themes/tango/css/screen.css">
+    
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="file:///usr/lib64/python2.7/site-packages/landslide/themes/default/js/slides.js"></script>
+    
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div id="blank"></div>
+  <div class="presentation">
+    <div id="current_presenter_notes">
+      <div id="presenter_note"></div>
+    </div>
+    <div class="slides">
+      
+      <!-- slide source: hadoop.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>大数据算命系列(6)</h1></header>
+            
+            
+            <section><h1>hadoop之hdfs技术</h1>
+<blockquote>
+<p>----- 大数据算命师</p>
+<p>----- 2013.09.25</p>
+</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="hadoop.rst">hadoop.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              1/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: hadoop.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>hadoop简介</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>背景<ol class="arabic">
+<li>google发布的论文</li>
+<li>yahoo!的开源实现</li>
+</ol>
+</li>
+<li>功能<ol class="arabic">
+<li>分布式文件存储系统(hdfs: Hadoop Distributed File System )</li>
+<li>分布式并行计算框架(MapReduce)</li>
+</ol>
+</li>
+<li>API<ol class="arabic">
+<li>java编程接口</li>
+<li>streaming接口（加载任意可执行脚本）</li>
+</ol>
+</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="hadoop.rst">hadoop.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              2/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: hadoop.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>设计的目的</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>NoSQL(Not Only SQL)</li>
+<li>低廉的硬件(Low-Cost)，集群是堆出来的</li>
+<li>方便横向扩展</li>
+<li>假定机器经常坏-&gt; 高可用性</li>
+<li>简单一致性模型：一次性写，多次读</li>
+<li>解决两个问题（存储与计算）</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="hadoop.rst">hadoop.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: hadoop.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>环境部署</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>单机模式（用于调试）</li>
+<li>伪分布式（用于调试）</li>
+<li>集群环境（完全分布式）</li>
+<li>java环境<ol class="arabic">
+<li>oracle jdk (1.6或者1.7)， not openjdk</li>
+</ol>
+</li>
+<li>机器之间无密码登录(证书登录)</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="hadoop.rst">hadoop.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: hadoop.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>基本角色</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>Master<ol class="arabic">
+<li>NameNode (元数据服务器)</li>
+<li>Secondary NameNode (辅助元数据服务器)</li>
+<li>文件系统的目录信息，各个文件的分块信息，数据块的位置信息，并且管理各个数据服务器</li>
+<li>会有单点故障</li>
+</ol>
+</li>
+<li>slave<ol class="arabic">
+<li>DataNodes(数据块存储)</li>
+<li>分块与副本（查看：通过es的head插件来直观了解）</li>
+</ol>
+</li>
+<li>作业控制<ol class="arabic">
+<li>JobTracker (任务调度员)： 50030</li>
+<li>Tasktracker(任务执行)： 50060</li>
+<li>speculative task(推测式任务)： 以空间换时间，同时启动多个相同的task，哪个完成的早使用哪个的结果（查看：Killed tasks）</li>
+</ol>
+</li>
+<li>client端<ol class="arabic">
+<li>客户端连接（断开也无所谓）</li>
+</ol>
+</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="hadoop.rst">hadoop.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              5/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: hadoop.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>启动与进程</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>启动与关闭</li>
+</ol>
+<pre>启动：<span class="nv">$ </span>start-all.sh
+关闭：<span class="nv">$ </span>stop-all.sh
+</pre>
+<ol class="arabic simple">
+<li>在master节点上，使用jps查看当前启动的进程，应该会有如下进程</li>
+</ol>
+<pre><span class="nv">$ </span>jps
+23344 Jps
+27808 NameNode
+32558 jar
+28329 TaskTracker
+27940 DataNode
+28177 JobTracker
+28076 SecondaryNameNode
+</pre>
+<ol class="arabic simple">
+<li>在slave节点上，使用jps查看当前启动的进程，应该会有如下进程</li>
+</ol>
+<pre><span class="nv">$ </span>jps
+28336 DataNode
+28448 TaskTracker
+6581 Jps
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="hadoop.rst">hadoop.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              6/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: hadoop.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>作业管理</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>job（作业）</li>
+<li>task（任务，作业分出来的小任务）</li>
+<li>kill掉job/task<ol class="arabic">
+<li>hadoop job -kill job_201301221529_0349</li>
+<li>hadoop job -kill-task task_201307261245_2373_m_000000</li>
+</ol>
+</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="hadoop.rst">hadoop.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: hadoop.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>dfs基本操作</h1></header>
+            
+            
+            <section><p>1. 列目录
+.. code-block:: sh</p>
+<blockquote>
+hadoop fs -ls /
+hadoop fs -ls /access
+dfs表示使用它的hdfs接口，-ls和Linux里面的ls一样，可以用hadoop dfs -help来查看所有命令，/表示hadoop的根文件系统，注意和Linux本身的文件系统进行区别。</blockquote>
+<p>#. 配合Linux管道与命令
+.. code-block:: sh</p>
+<blockquote>
+hadoop文件系统里的文件，只有使用hadoop相应的接口查看，无法自己去文件系统里面查看 。
+$ hadoop dfs -cat /logs/20120819/10.9.0.5_*/<a href="#id7"><span class="problematic" id="id8">*</span></a>.log.gz | gzip -d | less</blockquote>
+<p>#. 上传文件
+.. code-block:: sh</p>
+<blockquote>
+$ hadoop dfs -put 20121118.summary / # 将Linux文件系统中文件保存到Hadoop中的文件系统</blockquote>
+<p>#. 获取文件
+.. code-block:: sh</p>
+<blockquote>
+hadoop dfs -get /20121118.summary /tmp # 将hadoop文件系统中的文件保存到Linux文件系统中</blockquote>
+<p>#. 删除文件
+.. code-block:: sh</p>
+<blockquote>
+hadoop dfs -rm /20121118.summary</blockquote>
+<p>#. <em>删除目录</em>
+.. code-block:: sh</p>
+<blockquote>
+hadoop dfs -rm /directory_not_exists # 小心使用，会删除整个目录且不会提示</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="hadoop.rst">hadoop.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: hadoop.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>hadoop生态圈</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>hadoop是既是指hadoop本身，也指这个生态圈</li>
+<li>hdfs</li>
+<li>MapReduce</li>
+<li>Pig：一种数据流语言和运行环境，用以检索非常大的数据集</li>
+<li>hive: 数据仓库</li>
+<li>hbase： 列式数据库</li>
+<li>Mahout: 一个可扩展的机器学习和数据挖掘库</li>
+<li>Sqoop: 在传统数据库和HDFS之间高效传输数据的工具</li>
+<li>Cassandra: 列式数据库</li>
+<li>Impala: 类似于hive的</li>
+<li>hue:   基于web的hadoop交互(python+django开发)
+1. 可进行权限控制</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="hadoop.rst">hadoop.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: hadoop.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>NoSQL的厂商</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>去IOE</li>
+<li>google</li>
+<li>yahoo!</li>
+<li>facebook</li>
+<li>twitter</li>
+<li>Amazon</li>
+<li>cloudera</li>
+<li>datastax</li>
+<li>hortonwords (yahoo!投资)</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="hadoop.rst">hadoop.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              10/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: hadoop.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>hadoop发行版本</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>cloudera</li>
+<li>hortonworks</li>
+<li>mapr</li>
+<li>dse</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="hadoop.rst">hadoop.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              11/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: hadoop.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Thanks</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="hadoop.rst">hadoop.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              12/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="toc" class="sidebar hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+      
+      <tr id="toc-row-1">
+        <th><a href="#slide1">大数据算命系列(6)</a></th>
+        <td><a href="#slide1">1</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-2">
+        <th><a href="#slide2">hadoop简介</a></th>
+        <td><a href="#slide2">2</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-3">
+        <th><a href="#slide3">设计的目的</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-4">
+        <th><a href="#slide4">环境部署</a></th>
+        <td><a href="#slide4">4</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-5">
+        <th><a href="#slide5">基本角色</a></th>
+        <td><a href="#slide5">5</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-6">
+        <th><a href="#slide6">启动与进程</a></th>
+        <td><a href="#slide6">6</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide7">作业管理</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-8">
+        <th><a href="#slide8">dfs基本操作</a></th>
+        <td><a href="#slide8">8</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-9">
+        <th><a href="#slide9">hadoop生态圈</a></th>
+        <td><a href="#slide9">9</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-10">
+        <th><a href="#slide10">NoSQL的厂商</a></th>
+        <td><a href="#slide10">10</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-11">
+        <th><a href="#slide11">hadoop发行版本</a></th>
+        <td><a href="#slide11">11</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-12">
+        <th><a href="#slide12">Thanks</a></th>
+        <td><a href="#slide12">12</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <div id="help" class="sidebar hidden">
+    <h2>Help</h2>
+    <table>
+      <caption>Help</caption>
+      <tr>
+        <th>Table of Contents</th>
+        <td>t</td>
+      </tr>
+      <tr>
+        <th>Exposé</th>
+        <td>ESC</td>
+      </tr>
+      <tr>
+        <th>Full screen slides</th>
+        <td>e</td>
+      </tr>
+      <tr>
+        <th>Presenter View</th>
+        <td>p</td>
+      </tr>
+      <tr>
+        <th>Source Files</th>
+        <td>s</td>
+      </tr>
+      <tr>
+        <th>Slide Numbers</th>
+        <td>n</td>
+      </tr>
+      <tr>
+        <th>Toggle screen blanking</th>
+        <td>b</td>
+      </tr>
+      <tr>
+        <th>Show/hide slide context</th>
+        <td>c</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th>Help</th>
+        <td>h</td>
+      </tr>
+    </table>
+  </div>
+  <script>main()</script>
+</body>
+</html>
