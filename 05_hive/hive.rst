@@ -15,7 +15,7 @@
 
 1. 来源于facebook
 2. 类型于sql语句（工业界非常熟悉）
-#. 数据存储在cfs中（依赖hadoop）
+#. 数据存储在hdfs中（依赖hadoop）
 #. 调用hadoop的MapReduce来执行
 #. 数据库与数据仓库
    
@@ -94,7 +94,7 @@ jobtracker(web ui)
 
 1. 导出到
 
-   1. cfs
+   1. hdfs
    #. hive表
    #. Linux文件系统(insert overwrite local directory '/data/tmp/xxoolog' select ...)
 
@@ -129,7 +129,7 @@ Hive-QL
 1. 先from表
 2. 再insert导出
 #. 再select查询
-#. 再where条件(分区列是合法的列，and 1=1)
+#. 再where条件(分区列是合法的列， DSE(BUG): and 1=1)
 #. 再group by
 #. 再order by
 #. 再limit
@@ -146,6 +146,9 @@ Hive-QL
    3. 不匹配为：not like
 
 #. regexp查询
+   
+   1. escape: \\
+   2. hive -e '\\.php'  
 
 .. code-block:: sql
 
@@ -224,7 +227,7 @@ Hive-QL
 1. 相关语句
   
    1. group by
-   2. order/sort/distributed/clustered
+   2. order/sort/distributed/clustered by
    
 #. 相关聚合函数
 

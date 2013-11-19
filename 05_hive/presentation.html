@@ -28,14 +28,14 @@
     <title>大数据算命系列(5)</title>
     <!-- Styles -->
     
-    <link rel="stylesheet" media="print" href="file:///usr/lib64/python2.7/site-packages/landslide/themes/default/css/print.css">
-    <link rel="stylesheet" media="screen, projection" href="file:///usr/lib64/python2.7/site-packages/landslide/themes/tango/css/screen.css">
+    <link rel="stylesheet" media="print" href="file:///usr/local/lib/python2.7/dist-packages/landslide/themes/default/css/print.css">
+    <link rel="stylesheet" media="screen, projection" href="file:///usr/local/lib/python2.7/dist-packages/landslide/themes/tango/css/screen.css">
     
     
     <!-- /Styles -->
     <!-- Javascripts -->
     
-    <script type="text/javascript" src="file:///usr/lib64/python2.7/site-packages/landslide/themes/default/js/slides.js"></script>
+    <script type="text/javascript" src="file:///usr/local/lib/python2.7/dist-packages/landslide/themes/default/js/slides.js"></script>
     
     
     <!-- /Javascripts -->
@@ -93,7 +93,7 @@
             <section><ol class="arabic simple">
 <li>来源于facebook</li>
 <li>类型于sql语句（工业界非常熟悉）</li>
-<li>数据存储在cfs中（依赖hadoop）</li>
+<li>数据存储在hdfs中（依赖hadoop）</li>
 <li>调用hadoop的MapReduce来执行</li>
 <li>数据库与数据仓库<ol class="arabic">
 <li>柜台与货仓</li>
@@ -236,7 +236,7 @@ dse hive -e <span class="s1">&#39;use logs; show tables;&#39;</span>
 <h2>导出数据</h2>
 <ol class="arabic simple">
 <li>导出到<ol class="arabic">
-<li>cfs</li>
+<li>hdfs</li>
 <li>hive表</li>
 <li>Linux文件系统(insert overwrite local directory '/data/tmp/xxoolog' select ...)</li>
 </ol>
@@ -291,7 +291,7 @@ awk: awk &#39;BEGIN{FS=&quot;\001&quot;;OFS=&quot; &quot;;}{$1=$1;print $0}&#39;
 <li>先from表</li>
 <li>再insert导出</li>
 <li>再select查询</li>
-<li>再where条件(分区列是合法的列，and 1=1)</li>
+<li>再where条件(分区列是合法的列， DSE(BUG): and 1=1)</li>
 <li>再group by</li>
 <li>再order by</li>
 <li>再limit</li>
@@ -332,7 +332,11 @@ awk: awk &#39;BEGIN{FS=&quot;\001&quot;;OFS=&quot; &quot;;}{$1=$1;print $0}&#39;
 <li>不匹配为：not like</li>
 </ol>
 </li>
-<li>regexp查询</li>
+<li>regexp查询<ol class="arabic">
+<li>escape: \</li>
+<li>hive -e '\.php'</li>
+</ol>
+</li>
 </ol>
 <pre><span class="k">from</span> <span class="n">logs</span><span class="p">.</span><span class="n">ncsa_2013</span>
 <span class="k">insert</span> <span class="n">overwrite</span> <span class="k">local</span> <span class="n">directory</span> <span class="s1">&#39;/data/tmp/404_month8&#39;</span>
@@ -476,7 +480,7 @@ awk: awk &#39;BEGIN{FS=&quot;\001&quot;;OFS=&quot; &quot;;}{$1=$1;print $0}&#39;
             <section><ol class="arabic simple">
 <li>相关语句<ol class="arabic">
 <li>group by</li>
-<li>order/sort/distributed/clustered</li>
+<li>order/sort/distributed/clustered by</li>
 </ol>
 </li>
 <li>相关聚合函数<ol class="arabic">
