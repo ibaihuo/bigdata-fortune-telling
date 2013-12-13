@@ -59,7 +59,7 @@
             <section><h2>朴素贝叶斯算法简介与应用</h2>
 <blockquote>
 <p>-----  大数据算命师</p>
-<p>-----  2013.06.06</p>
+<p>-----  2013.06.06(更新:2013.12.13)</p>
 </blockquote></section>
             
           </div>
@@ -93,7 +93,7 @@
             <section><ul class="simple">
 <li>贝叶斯公式</li>
 </ul>
-<img alt="file:///home/renewjoy/Bigdata/fortune/01_bayes/./bayes.png" src="file:///home/renewjoy/Bigdata/fortune/01_bayes/./bayes.png" />
+<img alt="file:///home/renewjoy/Documents/github/bigdata-fortune-telling/01_bayes/./bayes.png" src="file:///home/renewjoy/Documents/github/bigdata-fortune-telling/01_bayes/./bayes.png" />
 <ul>
 <li><dl class="first docutils">
 <dt>Paul Graham</dt>
@@ -155,7 +155,8 @@
 </li>
 <li><dl class="first docutils">
 <dt>联合概率</dt>
-<dd><p class="first last">在多个事件发生的情况下，另一个事件发生概率有多大。比如，已知W1和W2是两个不同的词语，它们都出现在某封电子邮件之中，那么这封邮件是垃圾邮件的概率，就是联合概率。</p>
+<dd><p class="first">在多个事件发生的情况下，另一个事件发生概率有多大。</p>
+<p class="last">比如，已知W1和W2是两个不同的词语，它们都出现在某封电子邮件之中，那么这封邮件是垃圾邮件的概率，就是联合概率。</p>
 </dd>
 </dl>
 </li>
@@ -185,6 +186,8 @@
       <div class="slide-wrapper">
         <div class="slide">
           <div class="inner">
+            
+            <header><h1>两大算法</h1></header>
             
             
             <section><ul>
@@ -227,28 +230,30 @@
         <div class="slide">
           <div class="inner">
             
-            <header><h1>hashtable_good</h1></header>
+            <header><h1>数据结构</h1></header>
             
             
-            <section><p>&gt; db.hashtable_good.find({&quot;prob&quot;:{&quot;$gt&quot;:0.2}})
-{ &quot;_id&quot; : ObjectId(&quot;5169985d8c38926a4916bc43&quot;), &quot;count&quot; : 327914, &quot;word&quot; : &quot;.jpg&quot;, &quot;prob&quot; : 0.2103063003897459 }
-&gt; db.hashtable_good.find({&quot;prob&quot;:{&quot;$gt&quot;:0.1}})
-{ &quot;_id&quot; : ObjectId(&quot;5169985d8c38926a4916bc43&quot;), &quot;count&quot; : 327914, &quot;word&quot; : &quot;.jpg&quot;, &quot;prob&quot; : 0.2103063003897459 }
-&gt; db.hashtable_good.find({&quot;prob&quot;:{&quot;$gt&quot;:0.05}})
-{ &quot;_id&quot; : ObjectId(&quot;5169985b8c38926a49166947&quot;), &quot;count&quot; : 126709, &quot;word&quot; : &quot;.gif&quot;, &quot;prob&quot; : 0.08126429800522184 }
-{ &quot;_id&quot; : ObjectId(&quot;5169985b8c38926a4916718e&quot;), &quot;count&quot; : 144223, &quot;word&quot; : &quot;.js&quot;, &quot;prob&quot; : 0.09249683014787513 }
-{ &quot;_id&quot; : ObjectId(&quot;5169985d8c38926a4916bc43&quot;), &quot;count&quot; : 327914, &quot;word&quot; : &quot;.jpg&quot;, &quot;prob&quot; : 0.2103063003897459 }
-&gt; db.hashtable_good.find({&quot;prob&quot;:{&quot;$gt&quot;:0.01}})
-{ &quot;_id&quot; : ObjectId(&quot;5169985a8c38926a49165b45&quot;), &quot;count&quot; : 77428, &quot;word&quot; : &quot;.png&quot;, &quot;prob&quot; : 0.04965813056648159 }
-{ &quot;_id&quot; : ObjectId(&quot;5169985b8c38926a49166947&quot;), &quot;count&quot; : 126709, &quot;word&quot; : &quot;.gif&quot;, &quot;prob&quot; : 0.08126429800522184 }
-{ &quot;_id&quot; : ObjectId(&quot;5169985b8c38926a4916718e&quot;), &quot;count&quot; : 144223, &quot;word&quot; : &quot;.js&quot;, &quot;prob&quot; : 0.09249683014787513 }
-{ &quot;_id&quot; : ObjectId(&quot;5169985c8c38926a49168cfb&quot;), &quot;count&quot; : 70585, &quot;word&quot; : &quot;.html&quot;, &quot;prob&quot; : 0.045269400553224974 }
-{ &quot;_id&quot; : ObjectId(&quot;5169985d8c38926a4916bc43&quot;), &quot;count&quot; : 327914, &quot;word&quot; : &quot;.jpg&quot;, &quot;prob&quot; : 0.2103063003897459 }
-{ &quot;_id&quot; : ObjectId(&quot;5169985e8c38926a4916d1d5&quot;), &quot;count&quot; : 17789, &quot;word&quot; : &quot;.htm&quot;, &quot;prob&quot; : 0.01140890226593921 }
-{ &quot;_id&quot; : ObjectId(&quot;5169985f8c38926a4916e2cd&quot;), &quot;count&quot; : 33031, &quot;word&quot; : &quot;.css&quot;, &quot;prob&quot; : 0.021184296517299344 }
-{ &quot;_id&quot; : ObjectId(&quot;5169985f8c38926a4916ed4b&quot;), &quot;count&quot; : 19959, &quot;word&quot; : &quot;.webui/&quot;, &quot;prob&quot; : 0.012800622875140855 }
-{ &quot;_id&quot; : ObjectId(&quot;516998608c38926a4916fd39&quot;), &quot;count&quot; : 36313, &quot;word&quot; : &quot;.asp&quot;, &quot;prob&quot; : 0.023289193770478975 }
-{ &quot;_id&quot; : ObjectId(&quot;516998608c38926a491704bb&quot;), &quot;count&quot; : 77757, &quot;word&quot; : &quot;.php&quot;, &quot;prob&quot; : 0.04986913336852185 }</p></section>
+            <section><pre><span class="p">{</span>
+        <span class="s">&quot;_id&quot;</span> <span class="p">:</span> <span class="n">ObjectId</span><span class="p">(</span><span class="s">&quot;52aa80ad98e86672bad74173&quot;</span><span class="p">),</span>
+        <span class="s">&quot;attack_info&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;count&quot;</span> <span class="p">:</span> <span class="mi">132</span><span class="p">,</span>
+        <span class="s">&quot;prob&quot;</span> <span class="p">:</span> <span class="mf">0.003693857562613684</span>
+        <span class="p">},</span>
+        <span class="s">&quot;access_info&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;count&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s">&quot;prob&quot;</span> <span class="p">:</span> <span class="mi">0</span>
+        <span class="p">},</span>
+        <span class="s">&quot;word&quot;</span> <span class="p">:</span> <span class="s">&quot;t(&quot;</span><span class="p">,</span>
+        <span class="s">&quot;prob&quot;</span> <span class="p">:</span> <span class="mf">0.9999</span>
+<span class="p">}</span>
+</pre>
+<p>说明：</p>
+<ol class="arabic simple">
+<li>单词为t(</li>
+<li>这个词被识别和攻击的概率为0.999</li>
+<li>在攻击日志中出现次数为132次，概率为0.003693857562613684</li>
+<li>在正常日志中出现次数为0次，概率为0</li>
+</ol></section>
             
           </div>
           <div class="presenter_notes">
@@ -275,95 +280,7 @@
         <div class="slide">
           <div class="inner">
             
-            <header><h1>hashtable_bad</h1></header>
-            
-            
-            <section><p>&gt; db.hashtable_bad.find({&quot;prob&quot;:{&quot;$gt&quot;:0.01}})
-{ &quot;_id&quot; : ObjectId(&quot;51699a558c38926a491742fa&quot;), &quot;count&quot; : 760920, &quot;word&quot; : &quot;'&quot;, &quot;prob&quot; : 0.017638206341006112 }
-{ &quot;_id&quot; : ObjectId(&quot;51699a558c38926a49174ab5&quot;), &quot;count&quot; : 585758, &quot;word&quot; : &quot;(select&quot;, &quot;prob&quot; : 0.013577932594615804 }
-{ &quot;_id&quot; : ObjectId(&quot;51699a588c38926a491798ab&quot;), &quot;count&quot; : 640537, &quot;word&quot; : &quot;+&quot;, &quot;prob&quot; : 0.01484771562720001 }
-{ &quot;_id&quot; : ObjectId(&quot;51699a5a8c38926a4917c388&quot;), &quot;count&quot; : 469928, &quot;word&quot; : &quot;.asp&quot;, &quot;prob&quot; : 0.010892980903927246 }
-{ &quot;_id&quot; : ObjectId(&quot;51699a5d8c38926a49182b04&quot;), &quot;count&quot; : 435550, &quot;word&quot; : &quot;and&quot;, &quot;prob&quot; : 0.010096095216087383 }
-{ &quot;_id&quot; : ObjectId(&quot;51699a5d8c38926a49182d5b&quot;), &quot;count&quot; : 3861194, &quot;word&quot; : &quot;/../&quot;, &quot;prob&quot; : 0.08950288663020389 }
-{ &quot;_id&quot; : ObjectId(&quot;51699a5e8c38926a491842cb&quot;), &quot;count&quot; : 467705, &quot;word&quot; : &quot;=1&quot;, &quot;prob&quot; : 0.010841451528045344 }
-{ &quot;_id&quot; : ObjectId(&quot;51699a5e8c38926a491842ce&quot;), &quot;count&quot; : 679395, &quot;word&quot; : &quot;=0&quot;, &quot;prob&quot; : 0.015748448190411407 }
-{ &quot;_id&quot; : ObjectId(&quot;51699a658c38926a49190063&quot;), &quot;count&quot; : 584303, &quot;word&quot; : &quot;/js/&quot;, &quot;prob&quot; : 0.013544205540226164 }
-{ &quot;_id&quot; : ObjectId(&quot;51699a668c38926a49192c94&quot;), &quot;count&quot; : 475798, &quot;word&quot; : &quot;),&quot;, &quot;prob&quot; : 0.011029048126791285 }
-{ &quot;_id&quot; : ObjectId(&quot;51699a6a8c38926a49198d18&quot;), &quot;count&quot; : 1260056, &quot;word&quot; : &quot;.php&quot;, &quot;prob&quot; : 0.02920823178418598 }
-&gt; db.hashtable_bad.find({&quot;prob&quot;:{&quot;$gt&quot;:0.1}})
-&gt; db.hashtable_bad.find({&quot;prob&quot;:{&quot;$gt&quot;:0.05}})
-{ &quot;_id&quot; : ObjectId(&quot;51699a5d8c38926a49182d5b&quot;), &quot;count&quot; : 3861194, &quot;word&quot; : &quot;/../&quot;, &quot;prob&quot; : 0.08950288663020389 }</p></section>
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-          </div>
-          <footer>
-            
-            <aside class="source">
-              Source: <a href="naive_bayes.rst">naive_bayes.rst</a>
-            </aside>
-            
-            <aside class="page_number">
-              6/12
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: naive_bayes.rst -->
-      <div class="slide-wrapper">
-        <div class="slide">
-          <div class="inner">
-            
-            <header><h1>hashtable_prob</h1></header>
-            
-            
-            <section><p>&gt; db.hashtable_prob.find({&quot;prob&quot;:{&quot;$gt&quot;:0.999}})
-{ &quot;_id&quot; : ObjectId(&quot;516a1a9d8c3892251c895f93&quot;), &quot;word&quot; : &quot;/./&quot;, &quot;prob&quot; : 0.9999, &quot;good_prob&quot; : 6.413459028579015e-7, &quot;bad_prob&quot; : 0.009819255208819029 }
-{ &quot;_id&quot; : ObjectId(&quot;516a1a9e8c3892251c897e9c&quot;), &quot;word&quot; : &quot;')&quot;, &quot;prob&quot; : 0.9991, &quot;good_prob&quot; : 0.000001282691805715803, &quot;bad_prob&quot; : 0.0014666748538801446 }
-{ &quot;_id&quot; : ObjectId(&quot;516a1a9e8c3892251c8982bd&quot;), &quot;word&quot; : &quot;17,&quot;, &quot;prob&quot; : 0.9996, &quot;good_prob&quot; : 6.413459028579015e-7, &quot;bad_prob&quot; : 0.0016345451823267176 }
-{ &quot;_id&quot; : ObjectId(&quot;516a1a958c3892251c887dce&quot;), &quot;word&quot; : &quot;&amp;intro=&quot;, &quot;prob&quot; : 0.9996, &quot;good_prob&quot; : 6.413459028579015e-7, &quot;bad_prob&quot; : 0.0017652809807855233 }
-{ &quot;_id&quot; : ObjectId(&quot;516a1a978c3892251c88bb6a&quot;), &quot;word&quot; : &quot;('&quot;, &quot;prob&quot; : 0.9991, &quot;good_prob&quot; : 0.000001282691805715803, &quot;bad_prob&quot; : 0.0013494066970710847 }
-{ &quot;_id&quot; : ObjectId(&quot;516a1a998c3892251c88e957&quot;), &quot;word&quot; : &quot;/../&quot;, &quot;prob&quot; : 0.9999, &quot;good_prob&quot; : 0.000002565383611431606, &quot;bad_prob&quot; : 0.08950288663020389 }
-{ &quot;_id&quot; : ObjectId(&quot;516a1aa18c3892251c89baf8&quot;), &quot;word&quot; : &quot;=88888&quot;, &quot;prob&quot; : 0.9991, &quot;good_prob&quot; : 6.413459028579015e-7, &quot;bad_prob&quot; : 0.000690720801857357 }
-{ &quot;_id&quot; : ObjectId(&quot;516a1aa48c3892251c8a19ee&quot;), &quot;word&quot; : &quot;(1)&quot;, &quot;prob&quot; : 0.9996, &quot;good_prob&quot; : 6.413459028579015e-7, &quot;bad_prob&quot; : 0.0015655148263319792 }
-{ &quot;_id&quot; : ObjectId(&quot;516a1aa78c3892251c8a6f70&quot;), &quot;word&quot; : &quot;6,&quot;, &quot;prob&quot; : 0.9994, &quot;good_prob&quot; : 0.000001282691805715803, &quot;bad_prob&quot; : 0.002322947973573103 }
-{ &quot;_id&quot; : ObjectId(&quot;516a1aab8c3892251c8ac722&quot;), &quot;word&quot; : &quot;&amp;goods_type=&quot;, &quot;prob&quot; : 0.9996, &quot;good_prob&quot; : 6.413459028579015e-7, &quot;bad_prob&quot; : 0.0016261539839149998 }
-{ &quot;_id&quot; : ObjectId(&quot;516a1aad8c3892251c8b07d8&quot;), &quot;word&quot; : &quot;=3232&quot;, &quot;prob&quot; : 0.9992, &quot;good_prob&quot; : 6.413459028579015e-7, &quot;bad_prob&quot; : 0.0007740069231095714 }
-{ &quot;_id&quot; : ObjectId(&quot;516a1aae8c3892251c8b1510&quot;), &quot;word&quot; : &quot;)+&quot;, &quot;prob&quot; : 0.9997, &quot;good_prob&quot; : 6.413459028579015e-7, &quot;bad_prob&quot; : 0.0020395711763818085 }
-{ &quot;_id&quot; : ObjectId(&quot;516a1aaf8c3892251c8b2afa&quot;), &quot;word&quot; : &quot;1,&quot;, &quot;prob&quot; : 0.9998, &quot;good_prob&quot; : 0.000001282691805715803, &quot;bad_prob&quot; : 0.005352008339460415 }
-{ &quot;_id&quot; : ObjectId(&quot;516a1aaf8c3892251c8b3593&quot;), &quot;word&quot; : &quot;5,&quot;, &quot;prob&quot; : 0.9997, &quot;good_prob&quot; : 0.000001282691805715803, &quot;bad_prob&quot; : 0.0038790053166123176 }</p></section>
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-          </div>
-          <footer>
-            
-            <aside class="source">
-              Source: <a href="naive_bayes.rst">naive_bayes.rst</a>
-            </aside>
-            
-            <aside class="page_number">
-              7/12
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: naive_bayes.rst -->
-      <div class="slide-wrapper">
-        <div class="slide">
-          <div class="inner">
-            
-            <header><h2>Paul Graham的计算公式假设</h2></header>
+            <header><h1>Paul Graham的计算公式假设</h1></header>
             
             
             <section><ol class="arabic simple">
@@ -386,7 +303,7 @@
             </aside>
             
             <aside class="page_number">
-              8/12
+              6/12
             </aside>
           </footer>
         </div>
@@ -443,7 +360,7 @@
             </aside>
             
             <aside class="page_number">
-              9/12
+              7/12
             </aside>
           </footer>
         </div>
@@ -454,7 +371,7 @@
         <div class="slide">
           <div class="inner">
             
-            <header><h1>url分词研究</h1></header>
+            <header><h1>url分词研究(1)</h1></header>
             
             
             <section><h2>原则</h2>
@@ -466,43 +383,120 @@
 </ol>
 
 
-<h2>分割技术</h2>
+<h2>分词技术</h2>
 <ol class="arabic simple">
 <li>将所有的特殊符号替换为： 空格+特殊符号+空格</li>
-<li>部分</li>
 <li>将部分符号由1变成2, 这样可以将符号往前面都靠上去</li>
 <li>符号集 / ( ) . =</li>
 <li>/ 主要代表了路径</li>
 <li>( ) 通常是和函数一起</li>
 <li>. 按文件名与文件后缀进行侵害</li>
 <li>= 变量名，变量值</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="naive_bayes.rst">naive_bayes.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: naive_bayes.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>url分词研究(2)</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>将部分符号只往左靠才有意义<ol class="arabic">
+<li>&gt; ,</li>
+<li>script&gt; select null,1,3,5,</li>
+<li>1&gt;2  # 大于符号要算例外</li>
 </ol>
-<p>#. 将部分符号只往左靠才有意义
-如： &gt; ,
-script&gt;
-select null,1,3,5,
-1&gt;2  # 大于符号要算例外
-部分符号只往右靠才有意义
-&amp; ? &#64; &lt;</p>
-<p>#. 小于符号算例外
-如：
-&#64;&#64;version
-?id=
-&amp;cm=
-&lt;script</p>
+</li>
+<li>部分符号只往右靠才有意义<ol class="arabic">
+<li>&amp; ? &#64; &lt;</li>
+<li>小于符号算例外</li>
+<li>&#64;&#64;version ?id=  &amp;cm=  &lt;script</li>
+</ol>
+</li>
+<li>要解决，被同时向右靠和同时向左靠<ol class="arabic">
+<li>[Access] [/one.php?id=1&amp;uid=3.php;.jpg]</li>
+<li>[Split]  / /one. .php ?id= =1 &amp;uid= =3. .php ;. .jpg</li>
+<li>其中的=3.这个分词，3就是被向右靠的=与向左千的.</li>
+</ol>
+</li>
+<li>将有意义的符号组合拼接起来<ol class="arabic">
+<li>/<a href="#id12"><span class="problematic" id="id13">**</span></a>/# sql注释   --$# sql注释</li>
+<li>/../ # 目录跳转</li>
+<li><a class="reference external" href="http://">http://</a> # http网站，远程包含，url跳转</li>
+</ol>
+</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="naive_bayes.rst">naive_bayes.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: naive_bayes.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>整个流程</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>训练数据</li>
+</ol>
+<blockquote>
 <ol class="arabic simple">
-<li>要解决，被同时向右靠和同时向左靠</li>
+<li>越准备越好</li>
+<li>可由人工来构造，也可以由其它的算法得出</li>
+<li>这步构建好模型</li>
 </ol>
-<p>[Access] [/one.php?id=1&amp;uid=3.php;.jpg]</p>
-<p>[Split]  / /one. .php ?id= =1 &amp;uid= =3. .php ;. .jpg</p>
-<p>其中的=3.这个分词，3就是被向右靠的=与向左千的.</p>
+</blockquote>
+<ol class="arabic simple" start="2">
+<li>测试数据</li>
+</ol>
+<blockquote>
 <ol class="arabic simple">
-<li>将有意义的符号组合拼接起来</li>
+<li>使用上面的模型来测试，应用于实际</li>
+<li>在测试的时候，自学习出现的新词汇，反馈并更新模型</li>
+<li>人工干预，修正模型</li>
 </ol>
-<p>/<a href="#id10"><span class="problematic" id="id11">**</span></a>/# sql注释</p>
-<p>--$# sql注释</p>
-<p>/../ # 目录跳转</p>
-<p><a class="reference external" href="http://">http://</a> # http网站，远程包含，url跳转</p></section>
+</blockquote></section>
             
           </div>
           <div class="presenter_notes">
@@ -529,11 +523,26 @@ select null,1,3,5,
         <div class="slide">
           <div class="inner">
             
-            <header><h2>一个命题</h2></header>
+            <header><h1>how &amp;&amp; why</h1></header>
             
             
-            <section><p>如果你的过滤器效果越好，就越不能出现误判，一旦误判，后果就会变得很严重。</p>
-<p>类似于：富人越富，穷人越穷</p></section>
+            <section><h2>how</h2>
+<ol class="arabic simple">
+<li>熟悉整个算法流程，并理解其它中各个细节</li>
+<li>构建分类纯净的训练数据</li>
+<li>不断研究分词技术（重点），并查看对结果的影响</li>
+<li>反复进行最上面三个步骤</li>
+</ol>
+
+<h3>why</h3>
+<ol class="arabic">
+<li><p class="first">如果你的过滤器效果越好，就越不能出现误判，一旦误判，后果就会变得很严重。</p>
+<p>类似于: 富人越富，穷人越穷</p>
+</li>
+<li><p class="first">如果你发现过滤器效果出问题了，有正常的请求被识别成了攻击，那么手动调整，或检查原因</p>
+<p>类似于: 布施，法律</p>
+</li>
+</ol></section>
             
           </div>
           <div class="presenter_notes">
@@ -610,53 +619,51 @@ select null,1,3,5,
       
       
       <tr id="toc-row-4">
-        <th><a href="#slide4">-</a></th>
+        <th><a href="#slide4">两大算法</a></th>
         <td><a href="#slide4">4</a></td>
       </tr>
       
       
       <tr id="toc-row-5">
-        <th><a href="#slide5">hashtable_good</a></th>
+        <th><a href="#slide5">数据结构</a></th>
         <td><a href="#slide5">5</a></td>
       </tr>
       
       
       <tr id="toc-row-6">
-        <th><a href="#slide6">hashtable_bad</a></th>
+        <th><a href="#slide6">Paul Graham的计算公式假设</a></th>
         <td><a href="#slide6">6</a></td>
       </tr>
       
       
       <tr id="toc-row-7">
-        <th><a href="#slide7">hashtable_prob</a></th>
+        <th><a href="#slide7">概率公式</a></th>
         <td><a href="#slide7">7</a></td>
       </tr>
       
-        
-        <tr id="toc-row-8" class="sub">
-          <th><a href="#slide8">Paul Graham的计算公式假设</a></th>
-          <td><a href="#slide8">8</a></td>
-        </tr>
-        
+      
+      <tr id="toc-row-8">
+        <th><a href="#slide8">url分词研究(1)</a></th>
+        <td><a href="#slide8">8</a></td>
+      </tr>
       
       
       <tr id="toc-row-9">
-        <th><a href="#slide9">概率公式</a></th>
+        <th><a href="#slide9">url分词研究(2)</a></th>
         <td><a href="#slide9">9</a></td>
       </tr>
       
       
       <tr id="toc-row-10">
-        <th><a href="#slide10">url分词研究</a></th>
+        <th><a href="#slide10">整个流程</a></th>
         <td><a href="#slide10">10</a></td>
       </tr>
       
-        
-        <tr id="toc-row-11" class="sub">
-          <th><a href="#slide11">一个命题</a></th>
-          <td><a href="#slide11">11</a></td>
-        </tr>
-        
+      
+      <tr id="toc-row-11">
+        <th><a href="#slide11">how &amp;&amp; why</a></th>
+        <td><a href="#slide11">11</a></td>
+      </tr>
       
       
       <tr id="toc-row-12">

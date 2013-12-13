@@ -25,11 +25,11 @@ def calc_bayes_prob(good, bad):
 		if k in good:
 			good_prob = good[k]/float(good_sum)
 		else:
-			good_prob = 0.01 # 没有就是非常低，非常低就取0.0001(万分之一)
+			good_prob = 0.0001 # 没有就是非常低，非常低就取0.0001(万分之一)
 		if k in bad:
 			bad_prob = bad[k]/float(bad_sum)
 		else:
-			bad_prob = 0.01
+			bad_prob = 0.0001
 
 		prob[k]["good_prob"] = good_prob
 		prob[k]["bad_prob"] = bad_prob
@@ -109,6 +109,9 @@ if __name__ == '__main__':
 	good = {}
 	bad = {}
 
+	
+	# 训练数据集
+	# 
 	# 好词： 老师 大师
 	good["lao"] = 1						# 老
 	good["shi"] = 2						# 师
@@ -118,22 +121,30 @@ if __name__ == '__main__':
 	bad["cang"] = 1						# 苍
 	bad["lao"] = 1						# 老
 	bad["shi"] = 1						# 师
+	# 
+	# 训练数据结束
 
 
+	# 测试数据集
 	# 老 师
 	words = ["lao", "shi"]
 	good, bad, probability = display_evolution(good, bad, words)
-	print "老 师[1]", probability
+	print "老 师", probability
 
 	# 校 长
 	words = ["xiao", "zhang"]
 	good, bad, probability = display_evolution(good, bad, words)
 	print "校 长", probability
 
-	# 老 师2
-	words = ["lao", "shi"]
+	# 老 苍
+	words = ["lao","cang"]
 	good, bad, probability = display_evolution(good, bad, words)
-	print "老 师[2]", probability
+	print "老 苍", probability
+
+	# 苍井空
+	words = ["cang", "jing", "kong"]
+	good, bad, probability = display_evolution(good, bad, words)
+	print "苍 井 空", probability
 
 	# 大牌老师
 	words = ["da", "pai", "lao", "shi"]
