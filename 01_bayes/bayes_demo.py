@@ -161,7 +161,9 @@ if __name__ == '__main__':
 	good, bad, probability = display_evolution(good, bad, words)
 	print "知 道 创 宇 苍 老 师", probability
 
-    # 大师
-	words = ["da", "shi"]
+    # 苍茫的大海有一口空井
+	words = ["cang", "mang", "de",
+			 "da", "hai", "you", "yi",
+			 "kou", 'kong', 'jing']
 	good, bad, probability = display_evolution(good, bad, words)
-	print "大 师", probability
+	print "苍茫的大海有一口空井", probability

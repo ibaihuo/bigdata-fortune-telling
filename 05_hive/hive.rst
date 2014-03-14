@@ -227,7 +227,7 @@ Hive-QL
 1. 相关语句
   
    1. group by
-   2. order/sort/distributed/clustered by
+   2. order/sort/distributed/cluster by
    
 #. 相关聚合函数
 
