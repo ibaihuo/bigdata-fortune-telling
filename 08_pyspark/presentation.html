@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>大数据算命系列（8）</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" media="print" href="file:///usr/local/lib/python2.7/dist-packages/landslide/themes/default/css/print.css">
+    <link rel="stylesheet" media="screen, projection" href="file:///usr/local/lib/python2.7/dist-packages/landslide/themes/tango/css/screen.css">
+    
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="file:///usr/local/lib/python2.7/dist-packages/landslide/themes/default/js/slides.js"></script>
+    
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div id="blank"></div>
+  <div class="presentation">
+    <div id="current_presenter_notes">
+      <div id="presenter_note"></div>
+    </div>
+    <div class="slides">
+      
+      <!-- slide source: pyspark.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>大数据算命系列（8）</h1></header>
+            
+            
+            <section><h2>spark框架与pyspark简介</h2>
+<blockquote>
+<p>-----  大数据算命师</p>
+<p>-----  2014.04.4</p>
+</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="pyspark.rst">pyspark.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              1/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: pyspark.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Spark简介</h1></header>
+            
+            
+            <section><p>链接：<a class="reference external" href="http://spark.incubator.apache.org/">http://spark.incubator.apache.org/</a></p>
+<ol class="arabic simple">
+<li>AMPlab实验室</li>
+<li>快速迭代（可使用内存），适合机器学习</li>
+<li>用scala语言写，提供三种api（scala, java, python)</li>
+<li>dpark(豆瓣)</li>
+<li>mllib：机器学习</li>
+</ol>
+<blockquote>
+<ol class="arabic simple">
+<li>classification</li>
+<li>clustering</li>
+<li>recommentdation</li>
+<li>resgression</li>
+<li>linlg</li>
+</ol>
+</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="pyspark.rst">pyspark.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              2/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: pyspark.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>部署</h1></header>
+            
+            
+            <section><p>链接：<a class="reference external" href="http://spark.incubator.apache.org/docs/latest/cluster-overview.html">http://spark.incubator.apache.org/docs/latest/cluster-overview.html</a></p>
+<ol class="arabic simple">
+<li>local： 可以当成多进程</li>
+<li>standalone: 本身自带的集群（方便推广）</li>
+<li>mesos</li>
+<li>yarn</li>
+<li>EC2</li>
+</ol>
+<p>监控界面：<a class="reference external" href="http://10.8.0.232:8081/">http://10.8.0.232:8081/</a></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="pyspark.rst">pyspark.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: pyspark.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>localhost与standalone部署</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>下载0.9.0版本</li>
+<li>编译：bin/sbt assembly (可能需要很长时间，视网络情况)</li>
+<li>目录build下面的是不依赖于scala语言的，复制到其它有java环境的机器的/opt/spark</li>
+<li>将/opt/spark同步到集群中的所有机器的/opt/spark目录</li>
+<li>配置conf下的：</li>
+</ol>
+<blockquote>
+<ol class="arabic simple">
+<li>master: cdh-232-renlj</li>
+<li>slavers:</li>
+</ol>
+<blockquote>
+cdh-231-lux
+cdh-232-renlj
+cdh-233-liujh
+cdh-234-yang</blockquote>
+</blockquote>
+<ol class="arabic simple">
+<li>sbin/start-all.sh</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="pyspark.rst">pyspark.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: pyspark.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>由此开始</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>spark交互环境</li>
+</ol>
+<blockquote>
+spark-shell</blockquote>
+<ol class="arabic simple">
+<li>pyspark交互环境</li>
+</ol>
+<blockquote>
+pyspark</blockquote>
+<ol class="arabic simple">
+<li>ipython notebook</li>
+</ol>
+<blockquote>
+<p>IPYTHON=1 pyspark(前提：安装ipython)</p>
+<p>IPYTHON_OPTS=&quot;notebook --pylab inline&quot; ./pyspark(前提：ipython notebook能用)</p>
+</blockquote>
+<ol class="arabic simple">
+<li>两个概念(sc与rdd)</li>
+</ol>
+<blockquote>
+<ol class="arabic simple">
+<li>sc: SparkContext，Spark上下文环境</li>
+</ol>
+<blockquote>
+sc = SparkContext(&quot;local&quot;, &quot;app-name&quot;)</blockquote>
+<ol class="arabic simple">
+<li>rdd: 弹性分布式数据集，主要处理的对象</li>
+</ol>
+<blockquote>
+rdd = sc.textFile(&quot;head.log&quot;)</blockquote>
+</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="pyspark.rst">pyspark.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              5/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: pyspark.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>例子：wordcount</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>三种运行方式</li>
+</ol>
+<blockquote>
+<ol class="arabic simple">
+<li>本机单cpu（&quot;local&quot;, 文件在本机）</li>
+<li>本机多cpu（&quot;local[4]&quot;, 文件在本机）</li>
+<li>集群多cpu（&quot;spark://cdh-232-renlj:7077&quot;, 需要文件能每个机器都能访问）</li>
+</ol>
+</blockquote>
+<ol class="arabic simple">
+<li>注意：如果脚本要import自己的库，或者依赖于数据文件，需要使用pyFile将文件分发到其它机器：</li>
+</ol>
+<p>import kw,hacktoo, vuleye     # vuleye.py依赖数据文件data.json
+sc = SparkContext(&quot;spark://cdh-232-renlj:7077&quot;, &quot;gac.data&quot;, pyFiles=['data.json', 'kw.py', 'hacktool.py', 'vuleye.py'])</p>
+<pre><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">add</span>
+<span class="kn">from</span> <span class="nn">pyspark</span> <span class="kn">import</span> <span class="n">SparkContext</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="c"># sc = SparkContext(&quot;spark://cdh-232-renlj:7077&quot;, &quot;wc&quot;)</span>
+        <span class="c"># sc = SparkContext(&quot;local[4]&quot;, &quot;wc&quot;)</span>
+        <span class="n">sc</span> <span class="o">=</span> <span class="n">SparkContext</span><span class="p">(</span><span class="s">&quot;local&quot;</span><span class="p">,</span> <span class="s">&quot;wc&quot;</span><span class="p">)</span>
+
+        <span class="c">#lines = sc.textFile(&quot;hdfs://cdh-232-renlj:8020/tmp/head.log&quot;)</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">textFile</span><span class="p">(</span><span class="s">&quot;wc.txt&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">wc</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">flatMap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">))</span> \
+                     <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> \
+                     <span class="o">.</span><span class="n">reduceByKey</span><span class="p">(</span><span class="n">add</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span> <span class="ow">in</span> <span class="n">wc</span><span class="o">.</span><span class="n">collect</span><span class="p">():</span>
+                <span class="k">print</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">: </span><span class="si">%i</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="pyspark.rst">pyspark.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              6/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: pyspark.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>transformation与action</h1></header>
+            
+            
+            <section><p>链接：<a class="reference external" href="http://spark.apache.org/docs/latest/api/pyspark/index.html">http://spark.apache.org/docs/latest/api/pyspark/index.html</a></p>
+<ol class="arabic simple">
+<li>transformation: 变形(从一种形式的rdd到另外的rdd)</li>
+</ol>
+<blockquote>
+<ol class="arabic simple">
+<li>filter()：       过滤</li>
+<li>reduceByKey()：  按key进行合并</li>
+<li>groupByKey()：   聚合</li>
+<li>combineByKey():  能将两个元素合并成一个不同类型的元素</li>
+<li>...</li>
+</ol>
+</blockquote>
+<ol class="arabic simple" start="2">
+<li>action: 行动(通常是得出结论)</li>
+</ol>
+<blockquote>
+<ol class="arabic simple">
+<li>first():  返回rdd里面第一个值</li>
+<li>take(n):  从rdd里面取出前n个</li>
+<li>collect():  返回全部的rdd元素</li>
+<li>sum():   求和</li>
+</ol>
+<p>#. count():  求个数
+3. ...</p>
+</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="pyspark.rst">pyspark.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: pyspark.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>机器学习例子</h1></header>
+            
+            
+            <section><ol class="arabic simple">
+<li>注意</li>
+</ol>
+<blockquote>
+<ol class="arabic simple" start="0">
+<li>依赖numpy</li>
+<li>mllib从spark 0.8版本才引入，现在完全不完善</li>
+<li>scala的接口比python的接口要多些，比如linlg</li>
+</ol>
+</blockquote>
+<ol class="arabic simple">
+<li>from pyspark.mllib.clustering import KMeans</li>
+<li>返回中心</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="pyspark.rst">pyspark.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: pyspark.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>SparkR</h1></header>
+            
+            
+            <section><p>链接： <a class="reference external" href="https://github.com/amplab-extras/SparkR-pkg">https://github.com/amplab-extras/SparkR-pkg</a></p>
+<p>例子：</p>
+<pre><span class="n">sc</span> <span class="o">&lt;-</span> <span class="n">sparkR</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="s">&quot;local&quot;</span><span class="p">)</span>
+<span class="n">lines</span> <span class="o">&lt;-</span> <span class="n">textFile</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="s">&quot;hdfs://cdh-232-renlj:8020/tmp/head.log&quot;</span><span class="p">)</span>
+<span class="n">wordsPerLine</span> <span class="o">&lt;-</span> <span class="n">lapply</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="p">{</span> <span class="n">length</span><span class="p">(</span><span class="n">unlist</span><span class="p">(</span><span class="n">strsplit</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s">&quot; &quot;</span><span class="p">)))</span> <span class="p">})</span>
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="pyspark.rst">pyspark.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: pyspark.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>mesos及框架应用</h1></header>
+            
+            
+            <section><p>链接：<a class="reference external" href="http://mesos.apache.org/documentation/latest/mesos-frameworks/">http://mesos.apache.org/documentation/latest/mesos-frameworks/</a></p>
+<ol class="arabic simple">
+<li>dpark</li>
+<li>hadoop</li>
+<li>spark</li>
+<li>storm</li>
+<li>cassandra</li>
+<li>elastic search</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="pyspark.rst">pyspark.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              10/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: pyspark.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>生态及其它</h1></header>
+            
+            
+            <section><ol class="arabic simple" start="0">
+<li>主要用户</li>
+</ol>
+<blockquote>
+<ol class="arabic simple">
+<li>tweeter/amblab</li>
+<li>taobao/douban</li>
+</ol>
+</blockquote>
+<ol class="arabic simple">
+<li>AMPlab 的野心（<a class="reference external" href="https://amplab.cs.berkeley.edu/software/">https://amplab.cs.berkeley.edu/software/</a>）</li>
+</ol>
+<blockquote>
+<ol class="arabic simple">
+<li>BDAS: Berkeley Data Analytics Stack</li>
+<li>mesos:  集群资源管理器(提供三个接口：C++, java, python, 可以写应用)       类似于：yarn</li>
+<li>Tachyon：  内存文件系统      类似于：hadoop:  hdfs文件系统</li>
+<li>Spark：    弹性分布式计算    类似于：hadoop map-reduce</li>
+<li>shark:   离线数据仓库        类似于：hive</li>
+<li>mlbase:   机器学习</li>
+<li>GraphX：   图计算(pagerank)</li>
+<li>Spark Streaming:            类似于hadoop Streaming</li>
+<li>个人的感觉：pyspark:   python数据分析api，   类似于：pig</li>
+</ol>
+</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="pyspark.rst">pyspark.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              11/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: pyspark.rst -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Thanks</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="pyspark.rst">pyspark.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              12/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="toc" class="sidebar hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+      
+      <tr id="toc-row-1">
+        <th><a href="#slide1">大数据算命系列（8）</a></th>
+        <td><a href="#slide1">1</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-2">
+        <th><a href="#slide2">Spark简介</a></th>
+        <td><a href="#slide2">2</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-3">
+        <th><a href="#slide3">部署</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-4">
+        <th><a href="#slide4">localhost与standalone部署</a></th>
+        <td><a href="#slide4">4</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-5">
+        <th><a href="#slide5">由此开始</a></th>
+        <td><a href="#slide5">5</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-6">
+        <th><a href="#slide6">例子：wordcount</a></th>
+        <td><a href="#slide6">6</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide7">transformation与action</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-8">
+        <th><a href="#slide8">机器学习例子</a></th>
+        <td><a href="#slide8">8</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-9">
+        <th><a href="#slide9">SparkR</a></th>
+        <td><a href="#slide9">9</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-10">
+        <th><a href="#slide10">mesos及框架应用</a></th>
+        <td><a href="#slide10">10</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-11">
+        <th><a href="#slide11">生态及其它</a></th>
+        <td><a href="#slide11">11</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-12">
+        <th><a href="#slide12">Thanks</a></th>
+        <td><a href="#slide12">12</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <div id="help" class="sidebar hidden">
+    <h2>Help</h2>
+    <table>
+      <caption>Help</caption>
+      <tr>
+        <th>Table of Contents</th>
+        <td>t</td>
+      </tr>
+      <tr>
+        <th>Exposé</th>
+        <td>ESC</td>
+      </tr>
+      <tr>
+        <th>Full screen slides</th>
+        <td>e</td>
+      </tr>
+      <tr>
+        <th>Presenter View</th>
+        <td>p</td>
+      </tr>
+      <tr>
+        <th>Source Files</th>
+        <td>s</td>
+      </tr>
+      <tr>
+        <th>Slide Numbers</th>
+        <td>n</td>
+      </tr>
+      <tr>
+        <th>Toggle screen blanking</th>
+        <td>b</td>
+      </tr>
+      <tr>
+        <th>Show/hide slide context</th>
+        <td>c</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th>Help</th>
+        <td>h</td>
+      </tr>
+    </table>
+  </div>
+  <script>main()</script>
+</body>
+</html>
